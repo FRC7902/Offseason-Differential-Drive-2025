@@ -89,7 +89,7 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
+
     // read PID coefficients from SmartDashboard
     double p = SmartDashboard.getNumber("P Gain", 0);
     double i = SmartDashboard.getNumber("I Gain", 0);
@@ -100,35 +100,51 @@ public class DriveSubsystem extends SubsystemBase {
     double min = SmartDashboard.getNumber("Min Output", 0);
     double rotations = SmartDashboard.getNumber("Set Rotations", 0);
 
-    // if PID coefficients on SmartDashboard have changed, write new values to controller
-    if((p != kP)) { m_pidController.setP(p); kP = p; }
-    if((i != kI)) { m_pidController.setI(i); kI = i; }
-    if((d != kD)) { m_pidController.setD(d); kD = d; }
-    if((iz != kIz)) { m_pidController.setIZone(iz); kIz = iz; }
-    if((ff != kFF)) { m_pidController.setFF(ff); kFF = ff; }
-    if((max != kMaxOutput) || (min != kMinOutput)) { 
-      m_pidController.setOutputRange(min, max); 
-      kMinOutput = min; kMaxOutput = max; 
+    // if PID coefficients on SmartDashboard have changed, write new values to
+    // controller
+    if ((p != kP)) {
+      m_pidController.setP(p);
+      kP = p;
+    }
+    if ((i != kI)) {
+      m_pidController.setI(i);
+      kI = i;
+    }
+    if ((d != kD)) {
+      m_pidController.setD(d);
+      kD = d;
+    }
+    if ((iz != kIz)) {
+      m_pidController.setIZone(iz);
+      kIz = iz;
+    }
+    if ((ff != kFF)) {
+      m_pidController.setFF(ff);
+      kFF = ff;
+    }
+    if ((max != kMaxOutput) || (min != kMinOutput)) {
+      m_pidController.setOutputRange(min, max);
+      kMinOutput = min;
+      kMaxOutput = max;
     }
 
     /**
-     * PIDController objects are commanded to a set point using the 
+     * PIDController objects are commanded to a set point using the
      * SetReference() method.
      * 
      * The first parameter is the value of the set point, whose units vary
      * depending on the control type set in the second parameter.
      * 
-     * The second parameter is the control type can be set to one of four 
+     * The second parameter is the control type can be set to one of four
      * parameters:
-     *  com.revrobotics.CANSparkMax.ControlType.kDutyCycle
-     *  com.revrobotics.CANSparkMax.ControlType.kPosition
-     *  com.revrobotics.CANSparkMax.ControlType.kVelocity
-     *  com.revrobotics.CANSparkMax.ControlType.kVoltage
+     * com.revrobotics.CANSparkMax.ControlType.kDutyCycle
+     * com.revrobotics.CANSparkMax.ControlType.kPosition
+     * com.revrobotics.CANSparkMax.ControlType.kVelocity
+     * com.revrobotics.CANSparkMax.ControlType.kVoltage
      */
     m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
-    
+
     SmartDashboard.putNumber("SetPoint", rotations);
     SmartDashboard.putNumber("ProcessVariable", m_encoder.getPosition());
-  }
   }
 }
