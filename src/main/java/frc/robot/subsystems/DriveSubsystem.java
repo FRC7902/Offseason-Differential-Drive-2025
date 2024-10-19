@@ -44,8 +44,8 @@ public class DriveSubsystem extends SubsystemBase {
     m_rightFollowerMotor.setIdleMode(IdleMode.kBrake);
   }
 
-  public void arcadeDrive(double forward, double rotation) {
-    m_drive.arcadeDrive(forward, rotation);
+  public void curvatureDrive(double forward, double rotation) {
+    m_drive.curvatureDrive(forward, rotation, true);
   }
 
   @Override
