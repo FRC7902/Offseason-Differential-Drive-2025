@@ -23,27 +23,39 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
+    // Restore factory defaults of motor controllers to prevent unexpected behavior
     m_leftLeaderMotor.restoreFactoryDefaults();
     m_leftFollowerMotor.restoreFactoryDefaults();
     m_rightLeaderMotor.restoreFactoryDefaults();
     m_rightFollowerMotor.restoreFactoryDefaults();
 
+    // Set ajacent motors to follow each other
     m_leftFollowerMotor.follow(m_leftLeaderMotor);
     m_rightFollowerMotor.follow(m_rightLeaderMotor);
 
+    // Invert the left side motors, so both sides move in the same direction
     m_leftLeaderMotor.setInverted(true);
 
+    // Set the current limit of the motors
     m_leftLeaderMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
     m_leftFollowerMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
     m_rightLeaderMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
     m_rightFollowerMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
 
+    // Sets the motors to brake mode when they are not receiving power
     m_leftLeaderMotor.setIdleMode(IdleMode.kBrake);
     m_leftFollowerMotor.setIdleMode(IdleMode.kBrake);
     m_rightLeaderMotor.setIdleMode(IdleMode.kBrake);
     m_rightFollowerMotor.setIdleMode(IdleMode.kBrake);
   }
 
+  /**
+   * Drives the robot using arcade drive.
+   *
+   * @param forward  the speed that the robot should drive in the y direction.
+   *                 [-1.0..1.0]
+   * @param rotation the rotation rate of the robot around the z axis. [-1.0..1.0]
+   */
   public void curvatureDrive(double forward, double rotation) {
     m_drive.curvatureDrive(forward, rotation, true);
   }

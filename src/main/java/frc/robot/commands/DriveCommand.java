@@ -11,6 +11,8 @@ public class DriveCommand extends Command {
   /** Creates a new DriveCommand. */
   public DriveCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
+
+    // This command requires the drive subsystem
     addRequirements(RobotContainer.m_driveSubsystem);
   }
 
@@ -22,6 +24,9 @@ public class DriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // Uses the joystick values to drive the robot, where the left joystick controls
+    // the forward and backward movement and the right joystick controls the
+    // rotation of the robot
     RobotContainer.m_driveSubsystem.curvatureDrive(
         RobotContainer.m_driverController.getLeftY(),
         RobotContainer.m_driverController.getRightX());
