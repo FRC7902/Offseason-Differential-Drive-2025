@@ -10,13 +10,14 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
 
-  private final CANSparkMax m_leftLeaderMotor = new CANSparkMax(33, MotorType.kBrushless);
-  private final CANSparkMax m_leftFollowerMotor = new CANSparkMax(34, MotorType.kBrushless);
-  private final CANSparkMax m_rightLeaderMotor = new CANSparkMax(31, MotorType.kBrushless);
-  private final CANSparkMax m_rightFollowerMotor = new CANSparkMax(32, MotorType.kBrushless);
+  private final CANSparkMax m_leftLeaderMotor = new CANSparkMax(DriveConstants.kLeftFrontCAN, MotorType.kBrushless);
+  private final CANSparkMax m_leftFollowerMotor = new CANSparkMax(DriveConstants.kLeftRearCAN, MotorType.kBrushless);
+  private final CANSparkMax m_rightLeaderMotor = new CANSparkMax(DriveConstants.kRightFrontCAN, MotorType.kBrushless);
+  private final CANSparkMax m_rightFollowerMotor = new CANSparkMax(DriveConstants.kRightRearCAN, MotorType.kBrushless);
 
   public final DifferentialDrive m_drive = new DifferentialDrive(m_leftLeaderMotor, m_rightLeaderMotor);
 
@@ -32,10 +33,10 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_leftLeaderMotor.setInverted(true);
 
-    m_leftLeaderMotor.setSmartCurrentLimit(45);
-    m_leftFollowerMotor.setSmartCurrentLimit(45);
-    m_rightLeaderMotor.setSmartCurrentLimit(45);
-    m_rightFollowerMotor.setSmartCurrentLimit(45);
+    m_leftLeaderMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
+    m_leftFollowerMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
+    m_rightLeaderMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
+    m_rightFollowerMotor.setSmartCurrentLimit(DriveConstants.kCurrentLimit);
 
     m_leftLeaderMotor.setIdleMode(IdleMode.kBrake);
     m_leftFollowerMotor.setIdleMode(IdleMode.kBrake);

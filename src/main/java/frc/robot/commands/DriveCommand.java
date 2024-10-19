@@ -22,7 +22,7 @@ public class DriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_driveSubsystem.arcadeDrive(
+    RobotContainer.m_driveSubsystem.curvatureDrive(
         RobotContainer.m_driverController.getLeftY(),
         RobotContainer.m_driverController.getRightX());
   }
