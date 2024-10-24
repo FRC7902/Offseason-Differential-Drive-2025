@@ -15,5 +15,12 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int DriveSubsystem_Left_CANSparkMax_1 = 33;
+    public static final int DriveSubsystem_Left_CANSparkMax_2 = 34;
+    public static final int DriveSubsystem_Right_CANSparkMax_1 = 31;
+    public static final int DriveSubsystem_Right_CANSparkMax_2 = 32;
+    public static final int Driver_Controller = 0;
+    public static final String Driver_Controller_Move_Axis = null;
+    public static final String Driver_Controller_Rotate_Axis = null;
   }
 }
