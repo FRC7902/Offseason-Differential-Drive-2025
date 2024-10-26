@@ -16,4 +16,34 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+  public static class ArmConstants {
+    // CAN IDs for motor
+    public static final int kArmMotorCAN = 22;
+
+    // Arm speed
+    public static final double kArmSpeed = 0.75;
+
+    // Encoder constants
+    public static final int kEncoderCPR = 4096;
+    public static final double kEncoderToOutputRatio = 3;
+
+    // PID gains
+    public static final double kP = 15;
+    public static final double kI = 0.0;
+    public static final double kD = 0.0;
+
+    // Setpoints in degrees
+    public static final double kBaseSetpoint = 0;
+    public static final double kRaisedSetpoint = 35;
+    public static final double kPositionTolerance = 5;
+
+    public static final double kGearRatio = 3; 
+    public static final double kMaxAngle = 70.0;
+    public static final double kArmFeedForward = 2.22 / 12; // T P= 8.52N*m
+
+    public static final int defaultSpeed = 400;
+    public static final int defaultAcceleration = 400;
+
+  }
+
 }
