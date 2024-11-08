@@ -5,7 +5,8 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
+import frc.robot.commands.ArmToSetpoint;
+import frc.robot.commands.ArmToZero;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -38,6 +39,10 @@ public class RobotContainer {
   public static CommandXboxController m_operatorController = new CommandXboxController(
       OperatorConstants.kDriverControllerPort);
 
+  public static final ArmToSetpoint m_ArmToSetpoint = new ArmToSetpoint(m_armSubsystem);
+  public static final ArmToZero m_ArmToZero = new ArmToZero(m_armSubsystem);
+
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -69,12 +74,12 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is
     // pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-
-    m_driveSubsystem.setDefaultCommand(new DriveCommand());
     
-
     // Arm Buttons
+    m_driverController.b().onTrue(m_ArmToSetpoint);
+    m_driverController.x().onTrue(m_ArmToZero);
+
+
 
   }
 
@@ -85,6 +90,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return null;
   }
 }

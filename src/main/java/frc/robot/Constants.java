@@ -18,7 +18,8 @@ public final class Constants {
   }
   public static class ArmConstants {
     // CAN IDs for motor
-    public static final int kArmMotorCAN = 22;
+    public static final int kArmLeaderCAN = 20;
+    public static final int kArmFollowerCAN = 18;
 
     // Arm speed
     public static final double kArmSpeed = 0.75;
@@ -28,7 +29,7 @@ public final class Constants {
     public static final double kEncoderToOutputRatio = 3;
 
     // PID gains
-    public static final double kP = 15;
+    public static final double kP = 15000;
     public static final double kI = 0.0;
     public static final double kD = 0.0;
 
@@ -41,8 +42,11 @@ public final class Constants {
     public static final double kMaxAngle = 70.0;
     public static final double kArmFeedForward = 2.22 / 12; // T P= 8.52N*m
 
-    public static final int defaultSpeed = 400;
-    public static final int defaultAcceleration = 400;
+    public static final int defaultSpeed = 2000;
+    public static final int defaultAcceleration = 500;
+
+    public static final boolean sensorPhase = false;
+    public static final boolean motorInverted = false;
 
   }
 
