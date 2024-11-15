@@ -1,0 +1,32 @@
+package frc.robot;
+import frc.robot.Constants.ArmConstants;
+
+/** Add your docs here. */
+public class ArmUtils {
+
+    public int radsToCTRESensorUnits(double angleInRads, int encoderCPR) {
+        return (int) (angleInRads * encoderCPR / 2 * Math.PI / ArmConstants.GearRatio);
+    }
+
+    public double CTRESensorUnitsToRads(double angleInSensorUnits, int encoderCPR) {
+        return (angleInSensorUnits * 2 * Math.PI * ArmConstants.GearRatio / encoderCPR);
+    }
+
+    public int degToCTRESensorUnits(double angleInDeg, int encoderCPR) {
+        return (int) (angleInDeg * ArmConstants.GearRatio * encoderCPR / 360);
+    }
+
+    public double CTRESensorUnitsToDeg(double angleInSensorUnits, int encoderCPR) {
+        return (angleInSensorUnits * 360.0 / encoderCPR / ArmConstants.GearRatio);
+    }
+
+    // ku = ultimate gain, tu = oscillation period
+    public double[] setZieglerNicholsConstants(double ku, double tu) {
+        double constants[] = new double[3];
+        constants[0] = 0.2 * ku;           // kP
+        constants[1] = 1.2 * ku / tu;      // kI
+        constants[2] = 0.075 * ku * tu;    // kD
+        return constants;
+      }
+
+}
